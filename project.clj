@@ -12,8 +12,7 @@
   :source-paths ["src/clj"]
 
   :plugins [[lein-cljsbuild "1.1.3"]
-            [lein-garden "0.2.6"]
-            [lein-less "1.7.5"]]
+            [lein-garden "0.2.6"]]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"
@@ -26,10 +25,6 @@
                      :stylesheet   sparbz.css/screen
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
-
-  
-  :less {:source-paths ["less"]
-         :target-path  "resources/public/css"}
 
     :profiles
   {:dev

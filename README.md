@@ -38,20 +38,6 @@ Automatically recompile css file on change.
 lein garden auto
 ```
 
-### Compile css (less):
-
-Compile css file once.
-
-```
-lein less once
-```
-
-Automatically recompile css file on change.
-
-```
-lein less auto
-```
-
 ### Run application:
 
 ```
