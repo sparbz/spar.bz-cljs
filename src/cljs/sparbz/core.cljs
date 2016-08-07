@@ -21,18 +21,19 @@
     (devtools/install!)
     ))
 
-
 ;; Model
 
 (def initial-state
   {:counter 0})
 
 (def navlinks
-  [[:a {:href "#/about"} "about page"]])
+  [[:a {:href "#/about"} "about"]
+   [:a {:href "#/projects"} "projects"]
+   [:a {:href "#/music"} "music"]
+   [:a {:href "#/contact"} "contact"]])
 
 (defonce app-state
   (reagent/atom initial-state))
-
 
 ;; Update
 
@@ -51,25 +52,30 @@
 
 (defn nav [links]
   [:div.nav
-    [:ul
+    [:ul.nav
      (for [l links]
-       [:li {:key l} l])]])
+       [:li.nav-item {:key l} l])]])
 
-(defn header [name]
- [:div.jumbotron [:a {:href "#/"} [:h1 name]]
-  [nav navlinks]])
-
-
+(defn header [children]
+ [:div.container
+  [:div.row.jumbotron.header [:a {:href "#/"} [:h1 "sparbz"]]]
+  [:div.row [nav navlinks]]
+   children])
 
 (defn home [ui-channel app]
-  [:div.container
-   [:div.header [header "sparbz"]]])
-
+  [header [:div "home"]])
 
 (defn about [ui-channel app]
-  [:div.container
-   [:div.header [header "sparbz"]]])
+  [header [:div "about"]])
 
+(defn projects [ui-channel app]
+  [header [:div "projects"]])
+
+(defn music [ui-channel app]
+  [header [:div "music"]])
+
+(defn contact [ui-channel app]
+  [header [:div "contact"]])
 
 ;; Routes
 
@@ -91,6 +97,15 @@
   (defroute "/about" []
     (swap! app-state assoc :page :about))
 
+  (defroute "/projects" []
+    (swap! app-state assoc :page :projects))
+
+  (defroute "/music" []
+    (swap! app-state assoc :page :music))
+
+  (defroute "/contact" []
+    (swap! app-state assoc :page :contact))
+
   ;; add routes here
 
 
@@ -102,6 +117,9 @@
 (defmulti page identity)
 (defmethod page :home [] home)
 (defmethod page :about [] about)
+(defmethod page :projects [] projects)
+(defmethod page :music [] music)
+(defmethod page :contact [] contact)
 (defmethod page :default [] (fn [_] [:div]))
 
 (defn current-page [ui-channel app]
