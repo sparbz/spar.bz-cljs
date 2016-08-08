@@ -15,7 +15,8 @@
     :margin 0}]
   [:.nav
    {:display "flex"
-    :justify-content "center"}
+    :justify-content "center"
+    :padding "0 0 10px 0"}
    [:ul
     {:font-family "Courier"
      :list-style-type "none"
@@ -31,10 +32,11 @@
    {:background "#FFF"
     :padding 0}]
   [:.content
-   {:border "1px solid black"
-    :text-align "center"}]
+    {:text-align "center"}]
   [:h1
    {:font-family "Courier New"
     :font-weight "500"
     :margin "10px 0 0 0"}]
-  [:p {:color "green"}])
+  [:p {:color "green"}]
+  [:.footer
+   {:padding "20px 0 0 0"}])

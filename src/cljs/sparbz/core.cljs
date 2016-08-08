@@ -53,14 +53,18 @@
   [:div.row [nav navlinks]]
    children])
 
+(defn footer []
+  [:div.footer "copyright (C) 2016"])
+
 (defn content [children]
   [:div.row
    [:div.col-md-3 ""]
-   [:div.col-md-6.content children]
-   [:div.col-md-3 ""]])
+   [:div.col-md-6.content children [footer]]
+   [:div.col-md-3 ""]]
+  )
 
 (defn home [ui-channel app]
- [content "home"])
+ [content "hello world."])
 
 (defn about [ui-channel app]
  [content "about"])
