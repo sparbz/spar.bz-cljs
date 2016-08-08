@@ -30,6 +30,9 @@
   [:.jumbotron
    {:background "#FFF"
     :padding 0}]
+  [:.content
+   {:border "1px solid black"
+    :text-align "center"}]
   [:h1
    {:font-family "Courier New"
     :font-weight "500"
