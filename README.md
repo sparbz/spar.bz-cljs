@@ -7,7 +7,6 @@ _now featuring clojurescript!_
 * [reagent](https://github.com/reagent-project/reagent)
 * [figwheel](https://github.com/bhauman/lein-figwheel)
 * [garden](https://github.com/noprompt/garden)
-* [less](https://github.com/montoux/lein-less)
 * [petrol](https://github.com/krisajenkins/petrol)
 * [secretary](https://github.com/gf3/secretary)
 

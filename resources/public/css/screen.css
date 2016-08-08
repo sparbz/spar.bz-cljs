@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: Courier;
 }
 
 body a:link {
@@ -22,8 +23,18 @@ body a:link {
 .nav ul {
   font-family: Courier;
   list-style-type: none;
+  display: inline-flex;
   padding: 0;
   margin: 0;
+}
+
+.nav-item {
+  padding: 0 5px 0 0;
+}
+
+.joke-ticker {
+  display: flex;
+  justify-content: center;
 }
 
 .jumbotron {
@@ -34,6 +45,7 @@ body a:link {
 h1 {
   font-family: Courier New;
   font-weight: 500;
+  margin: 10px 0 0 0;
 }
 
 p {

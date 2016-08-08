@@ -10,7 +10,6 @@
    [devtools.core :as devtools]
    ))
 
-
 (defonce debug?
   ^boolean js/goog.DEBUG)
 
@@ -32,6 +31,24 @@
    [:a {:href "#/music"} "music"]
    [:a {:href "#/contact"} "contact"]])
 
+(def jokes
+  ["now with less mediocrity."
+   "not a community for longform non-fiction writers."
+   "no, a 12-year-old did not make this site."
+   "100% organic, certified GMO-free."
+   "come for the chicken parm, stay for the terrible jokes."
+   "putting the \"me\" in \"mediocre\" since 1991."
+   "2003 bergen county middle school stock market champion."
+   "30% off if you call right now."
+   "the romantic comedy everyone is talking about."
+   "gluten-free available upon request."
+   "save 15% or more of your time by turning your TV off."
+   "still not an albuquerque-based criminal attorney."
+   "ask about our specials on bar-mitzvahs."
+   "basically simba from the lion king."
+   "this is not legal or medical advice."
+   "purveyor of fine stuffed animals."])
+
 (defonce app-state
   (reagent/atom initial-state))
 
@@ -47,7 +64,6 @@
   (process-message [_ app]
     (update app :counter inc)))
 
-
 ;; View
 
 (defn nav [links]
@@ -56,26 +72,33 @@
      (for [l links]
        [:li.nav-item {:key l} l])]])
 
-(defn header [children]
+(defn joketicker [jokes]
+  [:joke-ticker
+   (get jokes (rand-int (count jokes)))])
+  ;  (js/setTimeout (fn [jokes] (get jokes (rand-int 2))) 1000)])
+
+(defn header [app children]
  [:div.container
-  [:div.row.jumbotron.header [:a {:href "#/"} [:h1 "sparbz"]]]
+  [:div.row.jumbotron.header [:a {:href "#/"} [:h1  "spar.bz"]]]
+  [:div.row.joke-ticker [joketicker jokes]]
   [:div.row [nav navlinks]]
    children])
 
 (defn home [ui-channel app]
-  [header [:div "home"]])
+ [:div "home"])
 
 (defn about [ui-channel app]
-  [header [:div "about"]])
+ [:div "about"])
 
 (defn projects [ui-channel app]
-  [header [:div "projects"]])
+ [:div "projects"])
 
 (defn music [ui-channel app]
-  [header [:div "music"]])
+ [:div "music"])
 
 (defn contact [ui-channel app]
-  [header [:div "contact"]])
+ [:div "contact"])
+
 
 ;; Routes
 
@@ -86,7 +109,6 @@
      (fn [event]
        (secretary/dispatch! (.-token event))))
     (.setEnabled true)))
-
 
 (defn app-routes []
   (secretary/set-config! :prefix "#")
@@ -106,11 +128,7 @@
   (defroute "/contact" []
     (swap! app-state assoc :page :contact))
 
-  ;; add routes here
-
-
   (hook-browser-navigation!))
-
 
 ;; Initialize App
 
@@ -124,7 +142,7 @@
 
 (defn current-page [ui-channel app]
   (let [page-key (:page app)]
-    [(page page-key) ui-channel app]))
+    [header [app] [(page page-key) ui-channel app]]))
 
 (defn reload []
   (swap! app-state identity))

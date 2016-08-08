@@ -3,7 +3,8 @@
 
 (defstyles screen
   [:body
-   {:margin 0}
+   {:margin 0
+    :font-family "Courier"}
    [:a:link
     {:color "black"
      :text-decoration "none"}]]
@@ -23,10 +24,14 @@
      :margin 0}]]
   [:.nav-item
    {:padding "0 5px 0 0"}]
+  [:.joke-ticker
+   {:display "flex"
+    :justify-content "center"}]
   [:.jumbotron
    {:background "#FFF"
     :padding 0}]
   [:h1
    {:font-family "Courier New"
-    :font-weight "500"}]
+    :font-weight "500"
+    :margin "10px 0 0 0"}]
   [:p {:color "green"}])
